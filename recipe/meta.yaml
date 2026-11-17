@@ -1,12 +1,12 @@
-{% set version = "0.17.0" %}
+{% set version = "0.18.0" %}
 
 package:
   name: pygfx
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/p/pygfx/pygfx-{{ version }}.tar.gz
-  sha256: 97759f7e4e8a35b278dab04426fd1b89a32499b117035d3e6074f69990b31553
+  url: https://files.pythonhosted.org/packages/source/p/pygfx/pygfx-{{ version }}.tar.gz
+  sha256: ed5e3507781bc26be321c5fe5246c247830eaee1018c484cb507d3148f3a7355
   patches:
     # Fix dashing on line loops -- https://github.com/pygfx/pygfx/pull/1315
     - 1315_fix_dashing_on_line_loops.patch
@@ -26,7 +26,7 @@ source:
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
-  number: 4
+  number: 0
 
 requirements:
   host:
