@@ -1,43 +1,27 @@
-{% set version = "0.17.0" %}
+{% set version = "0.18.0" %}
 
 package:
   name: pygfx
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/p/pygfx/pygfx-{{ version }}.tar.gz
-  sha256: 97759f7e4e8a35b278dab04426fd1b89a32499b117035d3e6074f69990b31553
-  patches:
-    # Fix dashing on line loops -- https://github.com/pygfx/pygfx/pull/1315
-    - 1315_fix_dashing_on_line_loops.patch
-    # Bake with the viewport size, not the canvas size
-    # https://github.com/pygfx/pygfx/pull/1324
-    - 1324_viewport_bake_size.patch
-    # Make the generated WGSL comply with the spec
-    # https://github.com/pygfx/pygfx/pull/1329
-    - 1329_wgsl_spec_compliance.patch
-    # Add physical_offset to the stdinfo uniform
-    # https://github.com/pygfx/pygfx/pull/1325
-    - 1325_physical_offset_in_stdinfo.patch
-    # Allow None in ComputeShader.set_resource to unbind
-    # https://github.com/pygfx/pygfx/pull/1341
-    - 1341_compute_set_resource_none.patch
+  url: https://files.pythonhosted.org/packages/source/p/pygfx/pygfx-{{ version }}.tar.gz
+  sha256: ed5e3507781bc26be321c5fe5246c247830eaee1018c484cb507d3148f3a7355
 
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
-  number: 4
+  number: 0
 
 requirements:
   host:
     - python {{ python_min }}
     - pip
-    - setuptools
-    - flit-core
+    - flit-core >=3.2,<5
   run:
     - python >={{ python_min }}
-    - numpy
-    - rendercanvas >=2.6.1
+    - numpy >=2.1
+    - rendercanvas >=2.7.0
     - wgpu-py >=0.30.1
     - pylinalg >=0.6.8,<0.7.0
     - freetype-py
