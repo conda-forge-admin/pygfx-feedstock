@@ -7,11 +7,14 @@ package:
 source:
   url: https://files.pythonhosted.org/packages/source/p/pygfx/pygfx-{{ version }}.tar.gz
   sha256: ed5e3507781bc26be321c5fe5246c247830eaee1018c484cb507d3148f3a7355
+  patches:
+    # https://github.com/pygfx/pygfx/pull/1353
+    - 0001-stencil-value-tracked-store.patch
 
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
-  number: 0
+  number: 1
 
 requirements:
   host:
